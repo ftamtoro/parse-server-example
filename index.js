@@ -39,6 +39,20 @@ app.get('/', function(req, res) {
   res.status(200).send('I dream of being a website.  Please star the parse-server repo on GitHub!');
 });
 
+require('plotly')(ftamtoro, gHFhSfCzdmARwZmM7qeC);
+
+var data = [
+  {
+    x: ["giraffes", "orangutans", "monkeys"],
+    y: [20, 14, 23],
+    type: "bar"
+  }
+];
+var graphOptions = {filename: "basic-bar", fileopt: "overwrite"};
+plotly.plot(data, graphOptions, function (err, msg) {
+    console.log(msg);
+});
+
 // There will be a test page available on the /test path of your server url
 // Remove this before launching your app
 app.get('/test', function(req, res) {
