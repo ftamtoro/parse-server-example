@@ -111,13 +111,21 @@ ParseRequest.getData = function() {
 
     }
 
+    // Limit to the last 5 items
+    if (milliseconds.length > 5)
+    {
+       milliseconds.splice(5,(milliseconds.length-5))
+       dateLabel.splice(5,(dateLabel.length-5))
+       completed.splice(5,(completed.length-5))
+    }
+
     TESTER = document.getElementById('tester');
 
     //Plot the graph
     Plotly.plot( TESTER, [{
         x: dateLabel,
         y: completed,
-        type: "bar" }], {
+        type: "histogram" }], {
         margin: { t: 0 } } );
 
   });
