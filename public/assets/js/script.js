@@ -69,9 +69,11 @@ ParseRequest.postData = function() {
 ParseRequest.getData = function() {
   XHR.setCallback(function(data){
     var jsonData = JSON.parse(data);
-    for (var i = 0; i < jsonData.counters.length; i++) {
-      var counter = jsonData.counters[i];
-      console.log(counter.counter_name);
+    var count = Object.keys(jsonData.results).length;
+    console.log(count);
+    for (var i = 0; i < count; i++) {
+      var counter = jsonData.results[i];
+      console.log(counter.objectId);
     }
   });
   console.log("Getting data");
