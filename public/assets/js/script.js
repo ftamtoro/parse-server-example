@@ -170,12 +170,13 @@ ParseRequest.getData = function() {
     tbl.appendChild(tbdy);
     body.appendChild(tbl);
 
-    // Limit to the last 5 items
-    if (milliseconds.length > 5)
+    // Limit to the last 7 items
+    var maxNumItems = 7;
+    if (milliseconds.length > maxNumItems)
     {
-       milliseconds.splice(5,(milliseconds.length-5))
-       dateLabel.splice(5,(dateLabel.length-5))
-       completed.splice(5,(completed.length-5))
+       milliseconds.splice(maxNumItems,(milliseconds.length-maxNumItems))
+       dateLabel.splice(maxNumItems,(dateLabel.length-maxNumItems))
+       completed.splice(maxNumItems,(completed.length-maxNumItems))
     }
 
     TESTER = document.getElementById('tester');
