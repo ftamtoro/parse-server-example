@@ -120,14 +120,11 @@ ParseRequest.getData = function() {
     for (var i = 0; i < 3; i++) {
         var tr = document.createElement('tr');
         for (var j = 0; j < 2; j++) {
-            if (i == 2 && j == 1) {
-                break
-            } else {
-                var td = document.createElement('td');
-                td.appendChild(document.createTextNode(i))
-                i == 1 && j == 1 ? td.setAttribute('rowSpan', '2') : null;
-                tr.appendChild(td)
-            }
+
+              var td = document.createElement('td');
+              td.appendChild(document.createTextNode(i))
+              i == 1 && j == 1 ? td.setAttribute('rowSpan', '2') : null;
+              tr.appendChild(td)
         }
         tbdy.appendChild(tr);
     }
