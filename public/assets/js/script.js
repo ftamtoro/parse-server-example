@@ -71,10 +71,47 @@ ParseRequest.getData = function() {
     var jsonData = JSON.parse(data);
     var count = Object.keys(jsonData.results).length;
     console.log(count);
+
+    var milliseconds[];
+    var dateLabel[];
+    var completed[];
+
     for (var i = 0; i < count; i++) {
       var counter = jsonData.results[i];
       console.log(counter.objectId);
+
+      var thisMs = Date.parse(counter.eventDate);
+      var insertIndex = 0;
+      for (insertIndex = 0; insertIndex < milliseconds.length; insertIndex++)
+      {
+        if (thisMs > milliseconds[insertIndex])
+        {
+          break;
+        }
+      }
+      milliseconds.splice(insertIndex,0,thisMs);
+      dateLabel.splice(insertIndex,0,counter.eventDate);
+      if (counter.completionStatus == "true")
+      {
+        completed.splice(insertIndex,0,1);
+      }
+      else
+      {
+        completed.splice(insertIndex,0,0);
+      }
+      console.log("Just inserted:");
+      console.log(milliseconds[insertIndex]);
+      console.log(dateLabel[insertIndex]);
+      console.log(completed[insertIndex]);
+
     }
+
+    //Plot the graph
+    Plotly.plot( TESTER, [{
+        dateLabel,
+        completed }], {
+        margin: { t: 0 } } );
+
   });
   console.log("Getting data");
   XHR.GET('/parse/classes/DataModel');
