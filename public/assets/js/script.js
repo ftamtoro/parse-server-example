@@ -7,7 +7,7 @@ var Steps = {}
 Steps.init = function() {
   this.buildParseUrl();
   this.bindBtn('#step-1-btn', function(e){
-    ParseRequest.postData();
+    ParseRequest.getData();
     e.preventDefault();
   })
 }
@@ -68,18 +68,14 @@ ParseRequest.postData = function() {
 
 ParseRequest.getData = function() {
   XHR.setCallback(function(data){
-    // close second step
-    Steps.closeStep('#step-2');
-    Steps.fillStepOutput('#step-2-output', data)
-    Steps.fillBtn('#step-2-btn', 'Fetched');
-    // open third step
-    Steps.openStep('#step-3');
-    Steps.bindBtn('#step-3-btn', function(e){
-      ParseRequest.postCloudCodeData();
-      e.preventDefault();
-    })
+    var jsonData = JSON.parse(data);
+    for (var i = 0; i < jsonData.counters.length; i++) {
+      var counter = jsonData.counters[i];
+      console.log(counter.counter_name);
+    }
   });
-  XHR.GET('/parse/classes/GameScore');
+  console.log("Getting data");
+  XHR.GET('/parse/classes/DataModel');
 }
 
 ParseRequest.postCloudCodeData = function() {
@@ -140,7 +136,7 @@ XHR.POST = function(path, callback) {
 
 XHR.GET = function(path, callback) {
   this.xhttp.open("GET", Config.getUrl() + path + '/' + Store.objectId, true);
-  this.xhttp.setRequestHeader("X-Parse-Application-Id", "myAppId");
+  this.xhttp.setRequestHeader("X-Parse-Application-Id", "UlJdbXUl6AcQN7IhXWv278qf4aNzj3qNs4XPOSrt");
   this.xhttp.setRequestHeader("Content-type", "application/json");
   this.xhttp.send(null);
 }
