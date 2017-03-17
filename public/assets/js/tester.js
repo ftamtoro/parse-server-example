@@ -17,10 +17,7 @@ var Steps = {}
 
 Steps.init = function() {
   this.buildParseUrl();
-  this.bindBtn('#step-1-btn', function(e){
-    ParseRequest.postData();
-    e.preventDefault();
-  })
+  ParseRequest.getData();
 }
 
 Steps.buildParseUrl = function() {
