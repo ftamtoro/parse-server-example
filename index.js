@@ -5,6 +5,7 @@ var express = require('express');
 var ParseServer = require('parse-server').ParseServer;
 var path = require('path');
 
+var events = require('events');
 var eventEmitter = new events.EventEmitter();
 
 var databaseUri = process.env.DATABASE_URI || process.env.MONGODB_URI;
