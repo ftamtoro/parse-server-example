@@ -162,8 +162,8 @@ ParseRequest.getData = function() {
             }
           }
 
-          td.appendChild(cellValue)
-          tr.appendChild(td)
+          td.appendChild(cellValue);
+          tr.appendChild(td);
         }
         tbdy.appendChild(tr);
     }
