@@ -1,14 +1,3 @@
-TESTER = document.getElementById('tester');
-
-Plotly.plot( TESTER, [{
-    x: [1, 2, 3, 4, 5],
-    y: [1, 2, 4, 8, 16] }], {
-    margin: { t: 0 } } );
-
-/* Current Plotly.js version */
-console.log( Plotly.BUILD );
-
-
 /**
  *  Steps handler
  */
@@ -17,6 +6,7 @@ var Steps = {}
 
 Steps.init = function() {
   this.buildParseUrl();
+  console.log(Config.getUrl());
   ParseRequest.getData();
 }
 
@@ -65,6 +55,7 @@ ParseRequest.getData = function() {
       console.log(counter.counter_name);
     }
   });
+  console.log("Getting data");
   XHR.GET('/parse/classes/DataModel');
 }
 
@@ -110,6 +101,20 @@ XHR.GET = function(path, callback) {
   this.xhttp.setRequestHeader("Content-type", "application/json");
   this.xhttp.send(null);
 }
+
+
+
+// Plot
+
+TESTER = document.getElementById('tester');
+
+Plotly.plot( TESTER, [{
+    x: [1, 2, 3, 4, 5],
+    y: [1, 2, 4, 8, 16] }], {
+    margin: { t: 0 } } );
+
+/* Current Plotly.js version */
+console.log( Plotly.BUILD );
 
 
 /**
