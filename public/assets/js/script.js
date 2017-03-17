@@ -117,14 +117,53 @@ ParseRequest.getData = function() {
     tbl.style.width = '100%';
     tbl.setAttribute('border', '1');
     var tbdy = document.createElement('tbody');
-    for (var i = 0; i < 3; i++) {
+    for (var i = 0; i <= milliseconds.length; i++) {
         var tr = document.createElement('tr');
-        for (var j = 0; j < 2; j++) {
+        for (var j = 0; j < 3; j++)
+        {
+          var td = document.createElement('td');
+          var cellValue = "";
 
-                var td = document.createElement('td');
-                td.appendChild(document.createTextNode(i))
-                //i == 1 && j == 1 ? td.setAttribute('rowSpan', '2') : null;
-                tr.appendChild(td)
+          if ( i == 0 )
+          {
+            if (j == 0)
+            {
+              cellValue = "No";
+            }
+            else if (j == 1)
+            {
+              cellValue = "Date";
+            }
+            else if (j == 2)
+            {
+              cellValue = "Medication Taken"
+            }
+          }
+          else
+          {
+            if (j == 0)
+            {
+              cellValue = (i+1).toString();
+            }
+            else if (j == 1)
+            {
+              cellValue = dateLabel[i-1];
+            }
+            else if (j == 2)
+            {
+              if ( completed[i-1] == 1 )
+              {
+                cellValue = "Yes";
+              }
+              else
+              {
+                cellValue = "No";
+              }
+            }
+          }
+
+          td.appendChild(cellValue)
+          tr.appendChild(td)
         }
         tbdy.appendChild(tr);
     }
