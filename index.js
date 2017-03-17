@@ -5,6 +5,8 @@ var express = require('express');
 var ParseServer = require('parse-server').ParseServer;
 var path = require('path');
 
+var eventEmitter = new events.EventEmitter();
+
 var databaseUri = process.env.DATABASE_URI || process.env.MONGODB_URI;
 
 if (!databaseUri) {
@@ -36,10 +38,11 @@ app.use(mountPath, api);
 
 // Parse Server plays nicely with the rest of your web routes
 app.get('/', function(req, res) {
+  eventEmitter.emit('plot');
   res.status(200).send('I dream of being a website.  Please star the parse-server repo on GitHub!');
 });
 
-require('plotly')(ftamtoro, gHFhSfCzdmARwZmM7qeC);
+var plotly = require('plotly')(ftamtoro, gHFhSfCzdmARwZmM7qeC);
 
 var data = [
   {
@@ -51,6 +54,13 @@ var data = [
 var graphOptions = {filename: "basic-bar", fileopt: "overwrite"};
 plotly.plot(data, graphOptions, function (err, msg) {
     console.log(msg);
+  
+    eventEmitter.on('plot', () => {
+      console.log('sending the plot!');
+      var streamObject = JSON.stringify({ x: getDateString(), y: data });
+        stream.write(streamObject+'\n');
+    });
+  
 });
 
 // There will be a test page available on the /test path of your server url
