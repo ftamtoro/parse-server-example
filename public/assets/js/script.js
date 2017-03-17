@@ -72,9 +72,9 @@ ParseRequest.getData = function() {
     var count = Object.keys(jsonData.results).length;
     console.log(count);
 
-    var milliseconds[];
-    var dateLabel[];
-    var completed[];
+    var milliseconds = [];
+    var dateLabel = [];
+    var completed = [];
 
     for (var i = 0; i < count; i++) {
       var counter = jsonData.results[i];
