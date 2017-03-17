@@ -5,11 +5,12 @@
 var Steps = {}
 
 Steps.init = function() {
-  this.buildParseUrl();
-  this.bindBtn('#step-1-btn', function(e){
-    ParseRequest.getData();
-    e.preventDefault();
-  })
+  //this.buildParseUrl();
+  ParseRequest.getData();
+  //this.bindBtn('#step-1-btn', function(e){
+    //ParseRequest.getData();
+    //e.preventDefault();
+  //})
 }
 
 Steps.buildParseUrl = function() {
@@ -91,7 +92,9 @@ ParseRequest.getData = function() {
       }
       milliseconds.splice(insertIndex,0,thisMs);
       dateLabel.splice(insertIndex,0,counter.eventDate);
-      if (counter.completionStatus == "true")
+      console.log("Status is: ");
+      console.log(counter.completionStatus);
+      if (counter.completionStatus)
       {
         completed.splice(insertIndex,0,1);
       }
