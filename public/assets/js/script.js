@@ -124,7 +124,7 @@ ParseRequest.getData = function() {
                 break
             } else {
                 var td = document.createElement('td');
-                td.appendChild(document.createTextNode('\u0020'))
+                td.appendChild(document.createTextNode(i))
                 i == 1 && j == 1 ? td.setAttribute('rowSpan', '2') : null;
                 tr.appendChild(td)
             }
