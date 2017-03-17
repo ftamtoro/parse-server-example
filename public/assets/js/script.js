@@ -73,7 +73,7 @@ ParseRequest.getData = function() {
   XHR.setCallback(function(data){
     var jsonData = JSON.parse(data);
     var count = Object.keys(jsonData.results).length;
-    console.log(count);
+    //console.log(count);
 
     var milliseconds = [];
     var dateLabel = [];
@@ -81,7 +81,7 @@ ParseRequest.getData = function() {
 
     for (var i = 0; i < count; i++) {
       var counter = jsonData.results[i];
-      console.log(counter.objectId);
+      //console.log(counter.objectId);
 
       var thisMs = Date.parse(counter.eventDate);
       var insertIndex = 0;
@@ -94,8 +94,8 @@ ParseRequest.getData = function() {
       }
       milliseconds.splice(insertIndex,0,thisMs);
       dateLabel.splice(insertIndex,0,counter.eventDate);
-      console.log("Status is: ");
-      console.log(counter.completionStatus);
+      //console.log("Status is: ");
+      //console.log(counter.completionStatus);
       if (counter.completionStatus)
       {
         completed.splice(insertIndex,0,1);
@@ -104,10 +104,10 @@ ParseRequest.getData = function() {
       {
         completed.splice(insertIndex,0,0);
       }
-      console.log("Just inserted:");
-      console.log(milliseconds[insertIndex]);
-      console.log(dateLabel[insertIndex]);
-      console.log(completed[insertIndex]);
+      //console.log("Just inserted:");
+      //console.log(milliseconds[insertIndex]);
+      //console.log(dateLabel[insertIndex]);
+      //console.log(completed[insertIndex]);
 
     }
 
@@ -188,7 +188,7 @@ ParseRequest.getData = function() {
         margin: { t: 0 } } );
 
   });
-  console.log("Getting data");
+  //console.log("Getting data");
   XHR.GET('/parse/classes/DataModel');
 }
 
