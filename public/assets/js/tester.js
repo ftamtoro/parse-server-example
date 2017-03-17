@@ -59,50 +59,16 @@ Steps.showWorkingMessage = function() {
 
 var ParseRequest = {};
 
-ParseRequest.postData = function() {
-  XHR.setCallback(function(data){
-    // store objectID
-    Store.objectId = JSON.parse(data).objectId;
-    // close first step
-    Steps.closeStep('#step-1');
-    Steps.fillStepOutput('#step-1-output', data)
-    Steps.fillBtn('#step-1-btn', 'Posted');
-    // open second step
-    Steps.openStep('#step-2');
-    Steps.bindBtn('#step-2-btn', function(e){
-      ParseRequest.getData();
-      e.preventDefault();
-    });
-  });
-  XHR.POST('/parse/classes/GameScore');
-}
-
 ParseRequest.getData = function() {
   XHR.setCallback(function(data){
-    // close second step
-    Steps.closeStep('#step-2');
-    Steps.fillStepOutput('#step-2-output', data)
-    Steps.fillBtn('#step-2-btn', 'Fetched');
-    // open third step
-    Steps.openStep('#step-3');
-    Steps.bindBtn('#step-3-btn', function(e){
-      ParseRequest.postCloudCodeData();
-      e.preventDefault();
-    })
-  });
-  XHR.GET('/parse/classes/GameScore');
-}
 
-ParseRequest.postCloudCodeData = function() {
-  XHR.setCallback(function(data){
-    // close second step
-    Steps.closeStep('#step-3');
-    Steps.fillStepOutput('#step-3-output', data)
-    Steps.fillBtn('#step-3-btn', 'Tested');
-    // open third step
-    Steps.showWorkingMessage();
+    var jsonData = JSON.parse(data);
+    for (var i = 0; i < jsonData.counters.length; i++) {
+      var counter = jsonData.counters[i];
+      console.log(counter.counter_name);
+    }
   });
-  XHR.POST('/parse/functions/hello');
+  XHR.GET('/parse/classes/DataModel');
 }
 
 
@@ -141,17 +107,9 @@ XHR.setCallback = function(callback) {
   };
 }
 
-XHR.POST = function(path, callback) {
-  var seed = {"score":1337,"playerName":"Sean Plott","cheatMode":false}
-  this.xhttp.open("POST", Config.getUrl() + path, true);
-  this.xhttp.setRequestHeader("X-Parse-Application-Id", "myAppId");
-  this.xhttp.setRequestHeader("Content-type", "application/json");
-  this.xhttp.send(JSON.stringify(seed));
-}
-
 XHR.GET = function(path, callback) {
   this.xhttp.open("GET", Config.getUrl() + path + '/' + Store.objectId, true);
-  this.xhttp.setRequestHeader("X-Parse-Application-Id", "myAppId");
+  this.xhttp.setRequestHeader("X-Parse-Application-Id", "UlJdbXUl6AcQN7IhXWv278qf4aNzj3qNs4XPOSrt");
   this.xhttp.setRequestHeader("Content-type", "application/json");
   this.xhttp.send(null);
 }
