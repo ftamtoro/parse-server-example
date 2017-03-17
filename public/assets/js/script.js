@@ -125,7 +125,7 @@ ParseRequest.getData = function() {
     Plotly.plot( TESTER, [{
         x: dateLabel,
         y: completed,
-        type: "histogram" }], {
+        type: "bar" }], {
         margin: { t: 0 } } );
 
   });
