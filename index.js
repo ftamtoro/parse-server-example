@@ -43,7 +43,7 @@ app.get('/', function(req, res) {
   res.status(200).send('I dream of being a website.  Please star the parse-server repo on GitHub!');
 });
 
-var plotly = require('plotly')(ftamtoro, gHFhSfCzdmARwZmM7qeC);
+var plotly = require('plotly/plotly')(ftamtoro, gHFhSfCzdmARwZmM7qeC);
 
 var data = [
   {
@@ -55,13 +55,13 @@ var data = [
 var graphOptions = {filename: "basic-bar", fileopt: "overwrite"};
 plotly.plot(data, graphOptions, function (err, msg) {
     console.log(msg);
-  
+
     eventEmitter.on('plot', () => {
       console.log('sending the plot!');
       var streamObject = JSON.stringify({ x: getDateString(), y: data });
         stream.write(streamObject+'\n');
     });
-  
+
 });
 
 // There will be a test page available on the /test path of your server url
