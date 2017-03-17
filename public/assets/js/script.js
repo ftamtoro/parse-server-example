@@ -1,3 +1,5 @@
+
+
 /**
  *  Steps handler
  */
@@ -108,6 +110,8 @@ ParseRequest.getData = function() {
       console.log(completed[insertIndex]);
 
     }
+
+    TESTER = document.getElementById('tester');
 
     //Plot the graph
     Plotly.plot( TESTER, [{
