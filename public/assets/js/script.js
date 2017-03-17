@@ -143,7 +143,7 @@ ParseRequest.getData = function() {
           {
             if (j == 0)
             {
-              cellValue = (i+1).toString();
+              cellValue = (i).toString();
             }
             else if (j == 1)
             {
