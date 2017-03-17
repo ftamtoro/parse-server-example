@@ -162,7 +162,7 @@ ParseRequest.getData = function() {
             }
           }
 
-          td.appendChild(cellValue);
+          td.appendChild(document.createTextNode(cellValue));
           tr.appendChild(td);
         }
         tbdy.appendChild(tr);
