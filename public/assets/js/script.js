@@ -115,8 +115,8 @@ ParseRequest.getData = function() {
 
     //Plot the graph
     Plotly.plot( TESTER, [{
-        dateLabel,
-        completed }], {
+        x: dateLabel,
+        y: completed }], {
         margin: { t: 0 } } );
 
   });
