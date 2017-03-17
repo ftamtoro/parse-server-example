@@ -43,7 +43,7 @@ app.get('/', function(req, res) {
   res.status(200).send('I dream of being a website.  Please star the parse-server repo on GitHub!');
 });
 
-var plotly = require('/plotly/plotly.js')(ftamtoro, gHFhSfCzdmARwZmM7qeC);
+var plotly = require('./plotly.js')(ftamtoro, gHFhSfCzdmARwZmM7qeC);
 
 var data = [
   {
